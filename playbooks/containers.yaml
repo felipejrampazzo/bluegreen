@@ -1,0 +1,4 @@
+- name: Criando a infra da maquina docker
+  hosts: docker
+  roles:
+    - containers

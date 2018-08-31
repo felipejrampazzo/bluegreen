@@ -1,0 +1,4 @@
+- name: Criando o bluegreen
+  hosts: docker
+  roles:
+    - bluegreen
