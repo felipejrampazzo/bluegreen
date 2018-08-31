@@ -1,0 +1,5 @@
+---
+# tasks file for pre_req
+
+- name: Instalando o Docker + Nginx
+  include: docker.yaml

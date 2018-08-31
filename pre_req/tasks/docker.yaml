@@ -1,0 +1,40 @@
+- name: Instalando os pre-requisitos do Docker
+  apt:
+    name:
+     - apt-transport-https
+     - ca-certificates
+     - curl
+     - software-properties-common
+    state: present
+
+- name: Adicionando as chaves GPG
+  apt_key: 
+    url:  https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Adcionando os Repositorios
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable
+    state: present
+
+- name: Instalando o Docker e o Nginx
+  apt:
+    name: 
+     - docker-ce
+     - nginx
+     - python-pip
+    update_cache: yes
+
+- name: Verificando se os servicos do Docker e Nginx estão no ar
+  service:
+    name: docker
+    enabled: yes
+    state: started
+  with_items:
+   - docker
+   - nginx
+   
+- name: garantido o docker-py
+  pip:
+   name: docker-py
+
